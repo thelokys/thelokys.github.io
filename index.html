@@ -1,1 +1,31 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <!-- Scripts -->
+    <script defer src="./src/game.js"></script>
+    <script defer src="./src/messages.js"></script>
+    <script defer src="./src/ia.js"></script>
+
+    <title>Jogo da velha</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="greetings">Tic Tac Toe</h1>
+      <h3 id="message"></h3>
+
+      <div class="level" id="level">
+        <button id="medium" onclick="setLevelGame('medium')">Noob</button>
+        <button id="hard" onclick="setLevelGame('hard')">Monster</button>
+      </div>
+
+      <div class="board" id="board"></div>
+      <button type="button" onclick="resetBoard()">Resetar!</button>
+    </div>
+  </body>
+</html>

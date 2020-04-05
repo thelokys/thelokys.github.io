@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Press Start 2P", cursive;
+  font: sans-serif;
+  background: #f0f0f5;
+  -webkit-font-smoothing: antialiased;
+}
+
+input,
+button,
+textarea {
+  font-family: "Press Start 2P", cursive;
+}
+
+button {
+  margin-top: 20px;
+  width: 160px;
+  height: 60px;
+  background: #e02041;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 700;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 60px;
+  transition: filter 0.2s;
+}
+
+button:hover {
+  filter: brightness(70%);
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: beige;
+}
+
+.board {
+  display: none;
+  margin: 50px auto;
+  grid-template-columns: repeat(3, 90px);
+  grid-template-rows: repeat(3, 90px);
+}
+
+.block {
+  display: flex;
+  border: 4px black solid;
+  opacity: 0.7;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.block:hover {
+  background-color: #bebebe;
+}
+
+#message {
+  margin-top: 40px;
+  color: #5a4ae6;
+}
+
+.marked:hover {
+  background-color: #e64a4a;
+}
+
+#square-2,
+#square-1,
+#square-0 {
+  border-top: none;
+}
+
+#square-6,
+#square-3,
+#square-0 {
+  border-left: none;
+}
+
+#square-8,
+#square-5,
+#square-2 {
+  border-right: none;
+}
+
+#square-8,
+#square-7,
+#square-6 {
+  border-bottom: none;
+}
