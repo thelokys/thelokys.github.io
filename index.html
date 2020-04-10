@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Styles -->
-    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
     <!-- Scripts -->
     <script defer src="./src/game.js"></script>
     <script defer src="./src/messages.js"></script>
@@ -15,17 +15,61 @@
   </head>
 
   <body>
+    
     <div class="container">
-      <h1 class="greetings">Tic Tac Toe</h1>
-      <h3 id="message"></h3>
-
-      <div class="level" id="level">
-        <button id="medium" onclick="setLevelGame('medium')">Noob</button>
-        <button id="hard" onclick="setLevelGame('hard')">Monster</button>
+      <div class="container-name" id="named">
+        <input 
+          type="text"
+          id="name"
+          placeholder="Write your name"
+        />  
+        <button 
+          type="button" 
+          class="buttonOK" 
+          onclick="setNamePlayer()"
+        >OK</button>
       </div>
-
-      <div class="board" id="board"></div>
-      <button type="button" onclick="resetBoard()">Resetar!</button>
+      <h1 class="greetings">Tic Tac Toe</h1>
+      <h3 id="message">write a name above</h3>
+      <div class="level" id="level">
+         <button 
+          id="medium" 
+          onclick="setLevelGame('easy')"
+        >Wolf
+        </button>
+        <button 
+          id="medium" 
+          onclick="setLevelGame('medium')"
+        >Tiger
+        </button>
+        <button 
+          id="hard"
+          onclick="setLevelGame('hard')"
+        >Dragon
+        </button>
+      </div>
+      <div lass="choice" id="choice">
+      <button 
+          id="medium" 
+          onclick="setPlayerMark('X')"
+        >X
+        </button>
+        <button 
+          id="hard"
+          onclick="setPlayerMark('O')"
+        >O
+        </button>
+      </div>
+      <div 
+        class="board"
+        id="board"
+      ></div>
+      <button 
+        id="resetarButton"
+        type="button"
+        onclick="resetBoard()"
+      >Resetar!
+    </button>
     </div>
   </body>
 </html>

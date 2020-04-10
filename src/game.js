@@ -17,7 +17,7 @@ const MARK_O = 'O';
 
 let message = {
   empty: '',
-  yourTurn: "turn GO!",
+  yourTurn: "It's your turn, GO!",
   enemyTurn: "Enemy turn!",
   winner: "You Win!",
   loser: "You Lose, HaHaHa!!",
@@ -29,6 +29,7 @@ let humanMark;
 let computerMark;
 let levelGame;
 let isRunning;
+let player_name;
 
 let elementGame = document.querySelector("#board");
 const elementMsg = document.querySelector("#message");
@@ -89,7 +90,8 @@ const move = (pos) => {
   }
   changeTurn();
   update();
-  computerMove();
+  setTimeout(() => computerMove(), 1000);
+  
 }
 
 const playerMove = (pos) => {
@@ -135,28 +137,32 @@ const refreshBoard = () => {
 
 const update = () => {
   refreshBoard();
+
   if (hasAWinner()) return;
+
   if (isYourTurn()) {
-    displayMsg(elementMsg, message.yourTurn);
+    displayMsgTurn(elementMsg, message.yourTurn, currentPlayer);
   } else {
-    displayMsg(elementMsg, message.enemyTurn);
+    displayMsgTurn(elementMsg, message.enemyTurn, currentPlayer);
   }
 }
 
 const setLevelGame = (level) => {
+  document.getElementById("message").innerHTML = "Select a Mark";
   levelGame = level;
+  document.getElementById("choice").style.display = "block";
   document.getElementById("level").style.display = "none";
-  document.getElementById("board").style.display = "grid";
+}
 
-  if (levelGame === 'medium') {
-    humanMark = MARK_X;
-    computerMark = MARK_O;
-    currentPlayer = humanMark;
-  } else {
-    humanMark = MARK_O;
-    computerMark = MARK_X;
-    currenlayer = computerMark;
-  }
+const setPlayerMark = (selectedMark) => {
+  humanMark = selectedMark;
+  computerMark = (humanMark === MARK_X)? MARK_O: MARK_X
+  currentPlayer = MARK_X;
+
+  console.log({humanMark, computerMark});
+  document.getElementById("message").innerHTML = `Welcome ${player_name}`;
+  document.getElementById("board").style.display = "grid";
+  document.getElementById("choice").style.display = "none";
 
   isRunning = true;
   if (!isYourTurn()) {
@@ -167,17 +173,32 @@ const setLevelGame = (level) => {
   update();
 }
 
+
+const setNamePlayer = () => {
+  if(document.getElementById("name").value.length === 0) {
+    return alert("Insert A name please! ;(");
+  }
+  document.getElementById("message").innerHTML = "Choice a level";
+  document.getElementById("board").style.display = "";
+  player_name = document.getElementById("name").value;
+  document.getElementById("level").style.display = "block";
+  document.getElementById("named").style.display = "none";
+}
+
 const resetBoard = () => {
+  if(player_name.length === 0) return false;
+
   squares = squares.map(t => false);
   document.getElementById("level").style.display = "block";
   document.getElementById("board").style.display = "";
   elementMsg.innerHTML = message.empty;
+  setNamePlayer();
   levelGame = '';
   isRunning = false;
   message = {
     empty: '',
-    yourTurn: "turn GO!",
-    enemyTurn: "Enemy turn GO!",
+    yourTurn: "It's your turn, GO!",
+    enemyTurn: "Enemy turn!",
     winner: "You Win!",
     loser: "You Lose, HaHaHa!!",
     draw: "Its A draw Noobs"

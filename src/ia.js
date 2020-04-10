@@ -1,13 +1,26 @@
 const getMoveIA = () => {
-  return hardMove();
-}
 
-const mediumMove = () => {
-  return 0;
+  switch(levelGame) {
+    case "easy":
+      return squares.findIndex(s => !s);
+    break;
+    case "medium":
+      let pos = Math.floor(Math.random() * squares.length);
+      if(squares[pos] === false)
+        squares[pos] = currentPlayer;
+      else { 
+        getMoveIA();
+      }
+    break;
+    default:
+      console.log("hard")
+      return hardMove();
+      break;
+  }
 }
 
 const hardMove = () => {
-  const value = bestMove();
+  const value = bestMove(medium);
   return value;
 }
 
@@ -28,16 +41,30 @@ const bestMove = () => {
   return move.i;
 }
 
-let scoresPossibility = {
+let winXMachine = {
   "X": 1,
   "O": -1,
   "tie": 0
 };
 
+let winOMachine = {
+  "O": 1,
+  "X": -1,
+  "tie": 0
+};
+
+
+const getScore = (result) => {
+  if(MARK_X === computerMark) {
+      winXMachine[result];
+  }
+  return winOMachine[result];
+}
+
 const minimax = (boardGame, depth, isMaximizing) => {
   let result = winnerMiniMax(boardGame);
   if (result !== null) {
-    return scoresPossibility[result]
+    return getScore(result);
   }
 
   if (isMaximizing) {
